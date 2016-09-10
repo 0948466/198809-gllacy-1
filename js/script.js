@@ -81,36 +81,41 @@ var linkfeedback = document.querySelector(".feedback-form");
 var popupfeedback = document.querySelector(".modal-content-feedback");
 var closefeedback = document.querySelector(".modal-feedback-close");
 var overlay = document.querySelector(".modal-overlay");
-var formfeedback = popupfeedback.querySelector(".modal-feedback-form");
-var feedbackname = popupfeedback.querySelector(".feedback-name");
-var feedbackemail = popupfeedback.querySelector(".feedback-email");
-var feedbacktext = popupfeedback.querySelector(".feedback-text");
+var formfeedback = document.querySelector(".modal-feedback-form");
+var feedbackname = document.querySelector(".feedback-name");
+var feedbackemail = document.querySelector(".feedback-email");
+var feedbacktext = document.querySelector(".feedback-text");
 
-linkfeedback.addEventListener("click", function (event) {
+if (linkfeedback) {
+   linkfeedback.addEventListener("click", function (event) {
   event.preventDefault();
-  popupfeedback.classList.add("show");
+  popupfeedback.classList.add("modal-content-show");
   overlay.classList.add("show");
   feedbackname.focus();    
 });
 
-formfeedback.addEventListener("submit", function (event) {
+
+    formfeedback.addEventListener("submit", function (event) {
     if (!feedbackname.value || !feedbackemail.value || !feedbacktext) {
         event.preventDefault();
         console.log("Нужно ввести данные во все поля");
     }
 });
 
+
+
 closefeedback.addEventListener("click", function (event) {
     event.preventDefault();
-    popupfeedback.classList.remove("show");
+    popupfeedback.classList.remove("modal-content-show");
     overlay.classList.remove("show");
 });
 
 window.addEventListener("keydown", function(event) {
     if (event.keyCode === 27) {
-        if (popupfeedback.classList.contains("show")) {
-            popupfeedback.classList.remove("show");
+        if (popupfeedback.classList.contains("modal-content-show")) {
+            popupfeedback.classList.remove("modal-content-show");
             overlay.classList.remove("show");
         }
     }
-});
+}); 
+}
